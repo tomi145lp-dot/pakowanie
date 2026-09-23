@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 104" role="img" aria-labelledby="title desc">
+  <title id="title">PackTooL</title>
+  <desc id="desc">Logo narzędzia do optymalizacji pakowania</desc>
+  <g fill="none" stroke="#73B98C" stroke-linejoin="round" stroke-width="7">
+    <path d="M12 31 43 14l31 17v42L43 90 12 73Z"/>
+    <path d="M12 31 43 49l31-18M43 49v41"/>
+  </g>
+  <path fill="#73B98C" d="M23 31 43 20l20 11-20 11z"/>
+  <text x="94" y="62" fill="#F6F1EA" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="700" letter-spacing="-2">PackTooL</text>
+  <text x="97" y="85" fill="#B8D8C3" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" letter-spacing="2">OPTIMIZATION TOOL</text>
+</svg>
