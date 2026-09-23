@@ -1,0 +1,10 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const html=fs.readFileSync('index.html','utf8'),control={value:'800',addEventListener(){}};
+const c={document:{getElementById(){return control},createElement(){return {}}},setTimeout(){},clearTimeout(){},window:{confirm(){return true}}};
+vm.createContext(c);vm.runInContext(html.slice(html.lastIndexOf('<script>')+8,html.lastIndexOf('</script>')),c);
+c.saved=JSON.parse(fs.readFileSync('C:/Users/tomi1/Downloads/wynik_uklad (3).json','utf8'));
+vm.runInContext('result=saved.result;render=()=>{};show=()=>{};applyStepPlan(result.packages.find(pkg=>pkg.items.some(item=>/okucia/i.test(item.id))))',c);
+const pkg=vm.runInContext('result.packages.find(pkg=>pkg.items.some(item=>/okucia/i.test(item.id)))',c);
+assert.deepEqual([pkg.baseWidth,pkg.baseDepth,pkg.innerHeight],[1945,66,132]);assert.equal(pkg.fillers.length,0);assert.equal(pkg.manual3d,true);c.validate(pkg);
+const hardware=pkg.items.find(item=>/okucia/i.test(item.id));assert.deepEqual([hardware.width,hardware.depth,hardware.height],[155,60,120]);
+console.log('Stepped rail-and-hardware layout: OK');

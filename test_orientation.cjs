@@ -1,0 +1,13 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const html=fs.readFileSync('index.html','utf8');
+const control={value:'800',addEventListener(){}};
+const context={document:{getElementById(){return control},createElement(){return {}}},setTimeout(){},clearTimeout(){}};
+vm.createContext(context);vm.runInContext(html.slice(html.lastIndexOf('<script>')+8,html.lastIndexOf('</script>')),context);
+const box={width:80,depth:40,height:20,autoRotate:true};
+const options=context.orientationOptions(box);
+assert.equal(options.length,6);
+const pkg={baseWidth:45,baseDepth:25};
+assert(context.fits(box,pkg),'the box should fit after rotating height into a horizontal dimension');
+const fixed={...box,autoRotate:false};assert(!context.fits(fixed,pkg),'an unselected box must not rotate into a vertical orientation');
+assert(context.fits(fixed,{baseWidth:45,baseDepth:85}),'an unselected box must still rotate 90 degrees on the flat plane');
+console.log('3D and flat 90-degree orientation selection: OK');
